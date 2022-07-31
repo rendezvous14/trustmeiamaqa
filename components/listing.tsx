@@ -6,10 +6,23 @@ import {
   Text,
   Spacer,
   VStack,
-  Skeleton
+  Skeleton,
+  Image,
 } from "@chakra-ui/react";
 import useSWR from "swr";
 import { useState } from "react";
+
+function Ads() {
+  return (
+    <Box as="section" bg="white" borderRadius="md" border="1px solid #E2E4E6">
+      <Image
+        borderRadius="md"
+        src="https://cdn.pixabay.com/photo/2015/11/16/14/43/cat-1045782_960_720.jpg"
+        alt="Test"
+      />
+    </Box>
+  );
+}
 
 function ListHeading() {
   return (
@@ -33,7 +46,7 @@ function HashTagHeading() {
   );
 }
 
-const fetcher = url => fetch(url).then(res => res.json());
+const fetcher = (url) => fetch(url).then((res) => res.json());
 
 const List = () => {
   const { data, error } = useSWR("https://dev.to/api/listings", fetcher);
@@ -41,9 +54,15 @@ const List = () => {
   if (error) return <Box>failed to load</Box>;
   if (!data)
     return (
-      <Box as="section" bg="white" borderRadius="md" border="1px solid #E2E4E6" width="100%">
+      <Box
+        as="section"
+        bg="white"
+        borderRadius="md"
+        border="1px solid #E2E4E6"
+        width="100%"
+      >
         <ListHeading />
-        {[1, 2, 3, 4, 5].map(id => {
+        {[1, 2, 3, 4, 5].map((id) => {
           return (
             <Box borderBottom="1px solid #E2E4E6" width="100%" p="3" key={id}>
               <Skeleton height="15vh" borderRadius="5px" width="100%" />
@@ -57,7 +76,12 @@ const List = () => {
     <Box as="section" bg="white" borderRadius="md" border="1px solid #E2E4E6">
       <ListHeading />
       {data.slice(0, 7).map((list, index) => (
-        <ListBox title={list.title} category={list.category} slug={list.slug} key={index} />
+        <ListBox
+          title={list.title}
+          category={list.category}
+          slug={list.slug}
+          key={index}
+        />
       ))}
     </Box>
   );
@@ -90,25 +114,31 @@ const News = () => {
         {
           title: "Javascript developer (~ 2 YOE) looking for remote work",
           category: "events",
-          slug: ""
+          slug: "",
         },
         {
           title:
             "Want to know how a JavaScript framework works under the hood?",
           category: "education",
-          slug: ""
+          slug: "",
         },
-        { title: "Pair Programming with Jhey", category: "events", slug: "" }
+        { title: "Pair Programming with Jhey", category: "events", slug: "" },
       ].map((news, index) => (
-        <ListBox title={news.title} category={news.category} slug={news.slug} key={index} />
+        <ListBox
+          title={news.title}
+          category={news.category}
+          slug={news.slug}
+          key={index}
+        />
       ))}
     </Box>
   );
 };
 
-const Listing = props => {
+const Listing = (props) => {
   return (
     <VStack as="aside" spacing="4" {...props}>
+      <Ads />
       <List />
       <News />
     </VStack>

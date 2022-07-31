@@ -214,21 +214,22 @@ function Card({
 
 const fetcher = (url) => fetch(url).then((res) => res.json())
 
-const timeperiods = ['Week', 'Month', 'Year', 'Latest']
+const timeperiods = ['Most Relevant', 'Newest', 'Oldest']
 function returnFetchUrl(isActive) {
-  if (isActive === 'Week') {
+  if (isActive === 'Most Relevant') {
     return ''
   }
   return isActive.toLowerCase()
 }
 
 const Posts = () => {
+  const token = "oqMd5YT5kx62CnMmQjFwwBiw"
   const [isActive, setIsActive] = useState(timeperiods[3])
   const { data, error } = useSWR(
-    `https://dev.to/stories/feed/${returnFetchUrl(isActive)}?page=1`,
+    [`https://dev.to/search/feed_content?per_page=15&page=0&user_id=651568&class_name=Article&sort_by=published_at&sort_direction=desc&approved=`,token],
     fetcher
   )
-
+  
   if (error) return <Box>failed to load</Box>
   if (!data)
     return (
@@ -241,7 +242,7 @@ const Posts = () => {
   return (
     <Box mb="8" borderRadius="md">
       <Header isActive={isActive} setIsActive={setIsActive} />
-      {data.map((post, idx) => (
+      {data.result.map((post, idx) => (
         <Card
           key={post.id}
           title={post.title}
@@ -252,8 +253,8 @@ const Posts = () => {
           reactionCount={post.public_reactions_count}
           postLink={`https://dev.to${post.path}`}
           publishedDate={post.readable_publish_date}
-          userProfile={post.user.profile_image_url}
-          headerImage={idx === 0 ? post.main_image : ''}
+          userProfile={post.user.profile_image_90}
+          headerImage={idx === 0 ? post.cloudinary_video_url : ''}
         />
       ))}
     </Box>

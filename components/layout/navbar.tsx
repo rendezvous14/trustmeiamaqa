@@ -13,7 +13,7 @@ import {
   MenuItem,
   Text,
   Link,
-  MenuDivider
+  MenuDivider,
 } from "@chakra-ui/react";
 import Container from "./container";
 import { ReactNode } from "react";
@@ -51,7 +51,7 @@ const Navbar = () => {
     >
       <Container>
         <HStack spacing={4}>
-          <Image src="/assets/images/logo.svg" />
+          <Image src="/assets/images/logos.jpg" height="2rem" weight="2rem" />
           <Input
             maxW="26rem"
             placeholder="Search..."
@@ -61,14 +61,6 @@ const Navbar = () => {
           />
           <Spacer />
           <HStack spacing={3}>
-            <Button
-              color="#fff"
-              borderRadius="4px"
-              bg="#3b49df"
-              _hover={{ bg: "#323ebe" }}
-            >
-              Create a post
-            </Button>
             <IconButton>
               <Image src="/assets/images/notification.svg" />
             </IconButton>
@@ -79,7 +71,9 @@ const Navbar = () => {
               <MenuButton as={Button} size="sm" px={0} py={0} rounded="full">
                 <Avatar
                   size={"sm"}
-                  src={"https://avatars2.githubusercontent.com/u/37842853?v=4"}
+                  src={
+                    "https://res.cloudinary.com/practicaldev/image/fetch/s--HkCCBTnA--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/651568/2db06956-df56-485a-993e-7dff11561347.jpeg"
+                  }
                 />
               </MenuButton>
               <MenuList
@@ -90,15 +84,15 @@ const Navbar = () => {
                 boxcolor="gray.700"
               >
                 <Link
-                  href="https://dev.to/m_ahmad"
+                  href="https://dev.to/rendezvous14"
                   _hover={{ textDecoration: "none" }}
                   isExternal
                 >
                   <MenuItem>
                     <VStack justify="start" alignItems="left">
-                      <Text fontWeight="500">Muhammad Ahmad</Text>
+                      <Text fontWeight="500">Rendezvous14</Text>
                       <Text size="sm" color="gray.500" mt="0 !important">
-                        @m_ahmad
+                        <a href="https://dev.to/rendezvous14">@rendezvous14</a>
                       </Text>
                     </VStack>
                   </MenuItem>

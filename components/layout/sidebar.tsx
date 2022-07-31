@@ -5,7 +5,7 @@ import {
   Heading,
   Image,
   Text,
-  Spacer
+  Spacer,
 } from "@chakra-ui/react";
 import { ReactNode } from "react";
 
@@ -44,21 +44,21 @@ const Links = () => {
         Listings
       </LinkButton>
       <LinkButton>
-        <Image src="/assets/images/sidebar/podcast.svg" mr="3" />
-        Podcasts
-      </LinkButton>
-      <LinkButton>
-        <Image src="/assets/images/sidebar/video.svg" mr="3" />
-        Videos
-      </LinkButton>
-      <LinkButton>
         <Image src="/assets/images/sidebar/tag.svg" mr="3" />
         Tags
       </LinkButton>
       <LinkButton>
-        <Text fontWeight="normal" color="#4d5760" ml="2.3rem">
-          More...
-        </Text>
+        <Image src="/assets/images/sidebar/video.svg" mr="3" />
+        Web E2E Playground
+      </LinkButton>
+      <LinkButton>
+        <Image
+          src="/assets/images/sidebar/contact.svg"
+          mr="3"
+          width={5}
+          height={5}
+        />
+        About Me
       </LinkButton>
     </Box>
   );
@@ -84,23 +84,13 @@ const Tags = () => {
         <Image src="/assets/images/settings.svg" />
       </Flex>
       <Box maxH="50vh" overflowY="auto">
-        <TagList>
-          {[
-            "Nextjs",
-            "react",
-            "javascript",
-            "ruby",
-            "ruby on rails",
-            "beginners",
-            "typescript"
-          ]}
-        </TagList>
+        <TagList>{["testing"]}</TagList>
       </Box>
     </Box>
   );
 };
 
-const Sidebar = props => {
+const Sidebar = (props) => {
   return (
     <Box as="aside" {...props}>
       <Links />
